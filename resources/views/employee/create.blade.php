@@ -13,7 +13,8 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
         <div class="container">
-            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
+            <a href="{{ route('home') }}" class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data
+                Master</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
@@ -73,7 +74,8 @@
                         <div class="col-md-6 mb-3">
                             <label for="email" class="form-label">Email</label>
                             <input class="form-control @if ($errors->has('email')) is-invalid @endif"
-                                type="text" name="email" id="email" value="{{ old('email') }}" placeholder="Enter Email">
+                                type="text" name="email" id="email" value="{{ old('email') }}"
+                                placeholder="Enter Email">
                             @if ($errors->has('email'))
                                 <small class="text-danger">{{ $errors->first('email') }}</small>
                             @endif
@@ -81,12 +83,30 @@
                         <div class="col-md-6 mb-3">
                             <label for="age" class="form-label">Age</label>
                             <input class="form-control @if ($errors->has('age')) is-invalid @endif"
-                                type="text" name="age" id="age" value="{{ old('age') }}" placeholder="Enter Age">
+                                type="text" name="age" id="age" value="{{ old('age') }}"
+                                placeholder="Enter Age">
                             @if ($errors->has('age'))
                                 <small class="text-danger">{{ $errors->first('age') }}</small>
                             @endif
                         </div>
                     </div>
+                    <div class="col-md-12 mb-3">
+                        <label for="position" class="form-label">Position</label>
+                        <select name="position" id="position" class="form-select">
+                            @foreach ($positions as $position)
+                                <option value="{{ $position->id }}"
+                                    {{ old('position') == $position->id ? 'selected' : '' }}>
+                                    {{ $position->code .
+                                        ' -
+                                                            ' .
+                                        $position->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('position')
+                            <div class="text-danger"><small>{{ $message }}</small></div>
+                        @enderror
+                    </div>
+
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">
