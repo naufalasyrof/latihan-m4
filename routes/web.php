@@ -20,10 +20,6 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Route::get('home', function () {
 //     return view('home');
 // });
@@ -37,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/login', [LoginController::class, 'authenticate']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('home', [HomeController::class, 'index'])->name('home');
     Route::get('profile', ProfileController::class)->name('profile');
     Route::resource('employees', EmployeeController::class);
