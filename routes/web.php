@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\EmployeeController;
 
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,12 +24,20 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', [HomeController::class, 'index'])->name('home');
-
-Route::get('profile', ProfileController::class)->name('profile');
-
-Route::resource('employees', EmployeeController::class);
-
 // Route::get('home', function () {
 //     return view('home');
 // });
+
+Auth::routes([
+    'register' => false
+]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('profile', ProfileController::class)->name('profile');
+    Route::resource('employees', EmployeeController::class);
+});
