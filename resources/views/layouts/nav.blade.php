@@ -18,7 +18,7 @@
             <hr class="d-md-none text-white-50">
             <div class="dropdown my-2 ms-md-auto">
                 <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
+                    aria-expanded="false"><i class="bi bi-person-circle me-1"></i>
                     Administrator
                 </a>
 
