@@ -2,9 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Employee;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
 class EmployeeSeeder extends Seeder
@@ -14,6 +15,7 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
+        Employee::factory()->count(200)->create();
         // DB::table('employees')->insert([
         //     [
         //     'firstname' => 'Purnama',
